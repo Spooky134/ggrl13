@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Results</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            .record {
+                border: 1px solid #ccc;
+                padding: 15px;
+                margin-bottom: 15px;
+                border-radius: 8px;
+            }
+            .record h3 {
+                margin-top: 0;
+            }
+            .field {
+                padding: 4px 0;
+            }
+            .key {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Saved forms</h2>
+        {% for obj in object_list %}
+            <div class="record">
+                <h3>Record #{{ obj.id }}</h3>
+                <small>Created: {{ obj.created_at }}</small>
+                <hr>
+                {% for key, value in obj.inputs.items %}
+                    <div class="field">
+                        <span class="key">{{ key }}:</span>
+                        <span class="value">{{ value }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% empty %}
+            <p>No saved data</p>
+        {% endfor %}
+        <a href="{% url 'simple:form' %}">
+            <button>Add new form</button>
+        </a>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Form</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{% static 'simple/js/dynamic_form.js' %}"></script>
+    </head>
+    <body>
+        <h2>Dynamic form</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div id="inputs-container">
+                <input type="text" name="name_0" placeholder="Enter the value">
+            </div>
+            <br>
+            <button type="button" id="add-input">Add input</button>
+            <button type="submit">Submit</button>
+            <a href="{% url 'simple:results' %}">
+                <button>View results</button>
+            </a>
+        </form>
+    </body>
+</html>
