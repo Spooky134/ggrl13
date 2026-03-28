@@ -26,14 +26,6 @@ curl -sSL https://install.python-poetry.org | python3 -
 export PATH="$HOME/.local/bin:$PATH"
 
 ```
-
-## Клонирование проекта
-
-```bash
-git clone https://github.com/Spooky134/ggrl13.git
-cd ggrl13
-```
-
 ## Настройка базы данных (PostgreSQL)
 
 Войдите в PostgreSQL:
@@ -48,6 +40,13 @@ CREATE USER ggrl_user WITH PASSWORD 'strong_password';
 CREATE DATABASE ggrl13 OWNER ggrl_user;
 GRANT ALL PRIVILEGES ON DATABASE ggrl13 TO ggrl_user;
 \q
+```
+
+## Клонирование проекта
+
+```bash
+git clone https://github.com/Spooky134/ggrl13.git
+cd ggrl13
 ```
 
 ## Переменные окружения
