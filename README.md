@@ -28,7 +28,7 @@ export PATH="$HOME/.local/bin:$PATH"
 ```
 ## Настройка базы данных (PostgreSQL)
 
-Войдите в PostgreSQL:
+Войти в PostgreSQL:
 
 ```bash
 sudo -u postgres psql
@@ -45,8 +45,14 @@ GRANT ALL PRIVILEGES ON DATABASE ggrl13 TO ggrl_user;
 ## Клонирование проекта
 
 ```bash
-git clone https://github.com/Spooky134/ggrl13.git
+cd /srv
+sudo git clone https://github.com/Spooky134/ggrl13.git
 cd ggrl13
+```
+## Установка владельца директории проекта
+
+```bash
+sudo chown -R $USER:$USER /srv/ggrl13
 ```
 
 ## Переменные окружения
@@ -75,7 +81,7 @@ DB_PORT=5432
 ```bash
 poetry config virtualenvs.in-project true
 poetry config keyring.enabled false
-poetry install --no-ansi
+poetry install --no-interaction
 ```
 
 ## Настройка Django
@@ -87,14 +93,8 @@ poetry run python ggrl13/manage.py migrate
 
 Сбор статических файлов:
 ```bash
-poetry run python manage.py collectstatic --noinput
+poetry run python ggrl13/manage.py collectstatic --noinput
 ```
-
-## Запуск сервера (Gunicorn)
-```bash
-nohup poetry run gunicorn ggrl13.wsgi:application --bind 127.0.0.1:8000 > gunicorn.log 2>&1 &
-```
-
 ## Настройка Nginx
 
 Копирование конфигурации:
@@ -119,4 +119,9 @@ sudo nginx -t
 sudo systemctl restart nginx
 ```
 
+## Запуск сервера (Gunicorn)
+```bash
+cd ggrl13
+nohup poetry run gunicorn ggrl13.wsgi:application --bind 127.0.0.1:8000 > gunicorn.log 2>&1 &
+```
 
