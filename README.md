@@ -9,7 +9,7 @@
 ### 1. Обновление системы
 
 ```bash
-sudo add-apt-repository ppa:deadsnakes/ppa
+sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt update && sudo apt upgrade -y
 ```
 
@@ -125,3 +125,9 @@ cd ggrl13
 nohup poetry run gunicorn ggrl13.wsgi:application --bind 127.0.0.1:8000 > gunicorn.log 2>&1 &
 ```
 
+## Приложение доступно на хосте по адресам
+Корень: https://127.0.0.1/simples/
+
+Добавление динамических форм: https://127.0.0.1/simples/form/
+
+Просмотр созданных форм: https://127.0.0.1/simples/results/
