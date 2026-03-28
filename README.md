@@ -9,13 +9,14 @@
 ### 1. Обновление системы
 
 ```bash
+sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update && sudo apt upgrade -y
 ```
 
 ### 2. Установка зависимостей
 
 ```bash
-sudo apt install -y python3 python3-venv python3-pip nginx postgresql postgresql-contrib curl git
+sudo apt install -y python3.13 python3.13-venv nginx postgresql postgresql-contrib curl git
 ```
 
 ### 3. Установка Poetry
@@ -23,6 +24,7 @@ sudo apt install -y python3 python3-venv python3-pip nginx postgresql postgresql
 ```bash
 curl -sSL https://install.python-poetry.org | python3 -
 export PATH="$HOME/.local/bin:$PATH"
+
 ```
 
 ## Клонирование проекта
@@ -73,14 +75,15 @@ DB_PORT=5432
 
 ```bash
 poetry config virtualenvs.in-project true
-poetry install --no-interaction --no-ansi
+poetry config keyring.enabled false
+poetry install --no-ansi
 ```
 
 ## Настройка Django
 
 Выполнение миграции:
 ```bash
-poetry run python manage.py migrate
+poetry run python ggrl13/manage.py migrate
 ```
 
 Сбор статических файлов:
